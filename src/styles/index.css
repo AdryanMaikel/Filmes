@@ -1,0 +1,107 @@
+h1,h2{display: none}
+
+section {
+    width: 100vw;
+    height: 100vh;
+    align-content: center;
+}
+
+form {
+    width: 230px;
+    margin: 0 auto;
+}
+
+form fieldset {
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0px 15px -7px;
+    border: none;
+    position: relative;
+}
+
+form fieldset legend {
+    width: 112px;
+    position: absolute;
+    z-index: 99;
+    top: -27px;
+    right: 0;
+}
+
+form label {
+    position: relative;
+    padding: 5px 13px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    gap: 5px;
+}
+
+form label input {
+    border: none;
+    outline: none;
+    padding-left: 5px;
+    width: 125px;
+}
+
+form label input.error ~ .line {
+    background: #f007;
+} 
+
+form label input ~ .line {
+    width: 0;
+    height: 1px;
+    position: absolute;
+    top: 22px;
+    left: 34px;
+    background: #0007;
+    box-shadow: 0 0px 15px -7px;
+    transition: width .5s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+form label input:focus ~ .line {
+    width: 135px;
+}
+
+form .buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 10px;
+}
+
+form .buttons button {
+    margin: 5px 0;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: #0000;
+    box-shadow: 0 0 8px -5px;
+    border-radius: 7px;
+    padding: 3px 0;
+    cursor: pointer;
+    transition: background .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+form .buttons button:hover {
+    background: #0002;
+}
+
+/*
+form .buttons button:hover i.fa-check {
+    color: #0f0;
+}
+
+form .buttons button:hover i.fa-cancel {
+    color: #f00;
+}
+*/
+
+footer address {
+    width: 100%;
+    height: 25px;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+}
