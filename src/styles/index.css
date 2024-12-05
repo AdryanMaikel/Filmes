@@ -1,3 +1,7 @@
+body {
+    background: #fefefe;
+}
+
 h1,h2{display: none}
 
 section {
@@ -6,50 +10,56 @@ section {
     align-content: center;
 }
 
-section img.background {
-    image-rendering: crisp-edges;
-}
-
 form {
     width: 230px;
     margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 0 0px 15px -7px;
 }
 
 form fieldset {
     padding: 5px;
-    border-radius: 5px;
-    box-shadow: 0 0px 15px -7px;
-    border: none;
     position: relative;
+    border: none;
 }
 
-form fieldset legend {
-    width: 100px;
+form fieldset figure {
     position: absolute;
+    width: 120px;
+    height: 120px;
     z-index: 99;
-    top: -32px;
-    right: -23px;
+    right: -40px;
+    top: -63px;
 }
 
-form fieldset legend img {
+form fieldset figure img {
     width: 100%;
-    height: 100%;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 form label {
     position: relative;
-    padding: 5px 13px;
+    padding: 10px 13px;
     margin-top: 5px;
     margin-bottom: 5px;
     display: flex;
     gap: 5px;
 }
 
+form label i {
+    color: black
+}
+
 form label input {
     border: none;
     outline: none;
-    padding-left: 5px;
-    width: 125px;
+    /* padding-left: 5px; */
+    width: 100px;
+}
+
+form label input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
 
 form label input.error ~ .line {
@@ -61,9 +71,9 @@ form label input ~ .line {
     height: 1px;
     position: absolute;
     top: 22px;
-    left: 34px;
-    background: #0007;
-    box-shadow: 0 0px 15px -7px;
+    left: 28px;
+    opacity: .7;
+    background: black;
     transition: width .5s cubic-bezier(0.215, 0.610, 0.355, 1);
 }
 
@@ -81,12 +91,11 @@ form .buttons {
 }
 
 form .buttons button {
+    background: #e9b35aaf;
     margin: 5px 0;
     width: 100%;
     border: none;
     outline: none;
-    background: #0000;
-    box-shadow: 0 0 8px -5px;
     border-radius: 7px;
     padding: 3px 0;
     cursor: pointer;
@@ -94,7 +103,7 @@ form .buttons button {
 }
 
 form .buttons button:hover {
-    background: #0002;
+    background: #e9b35aff;
 }
 
 footer address {

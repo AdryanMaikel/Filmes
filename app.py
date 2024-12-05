@@ -1,12 +1,18 @@
 from secrets import token_hex
 from time import time
+from datetime import timedelta as td
 
 from flask import Flask, request, render_template, session, abort
+from flask import redirect, url_for
 
-from db import users
+from db import users, movies
 
 app = Flask(__name__, static_folder="src", template_folder="pages")
 app.secret_key = token_hex(32)
+app.jinja_env.variable_start_string = "[["
+app.jinja_env.variable_end_string = "]]"
+# app.permanent_session_lifetime = td(hours=1)
+app.permanent_session_lifetime = td(seconds=1)
 
 route_limits = {
     "index": {"limit": 5, "time": 60},
@@ -62,17 +68,17 @@ def route_login():
 
     if users.check_login(**credentials):
         session["username"] = username
-        return "/home", 200
+        return "/Home", 200
 
     return "Credenciais inválidas", 401
 
 
-@app.route("/home", methods=["GET"])
+@app.route("/Home", methods=["GET"])
 def route_home():
     username = session.get("username")
     if not username or not users.include(username):
-        return "Sem acesso a esta página", 401
-    return render_template("home.html")
+        return redirect(url_for("index"))
+    return render_template("home.html", _data=movies.get(to_dict=True))
 
 
 @app.errorhandler(429)

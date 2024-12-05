@@ -2,8 +2,6 @@ const form = document.getElementById("form-login");
 const inputUsername = form.querySelector("input#username");
 const inputPassword = form.querySelector("input#password");
 
-const buttonSubmit = form.querySelector("button[type='submit']");
-
 (async function() {
     const credentials = localStorage.getItem("credentials");
     if (credentials) {
@@ -20,7 +18,9 @@ const buttonSubmit = form.querySelector("button[type='submit']");
     inputUsername.focus();
 })()
 
+
 const tentatives = [];
+const buttonSubmit = form.querySelector("button[type='submit']");
 
 form.onsubmit = async function(event) {
     event.preventDefault();

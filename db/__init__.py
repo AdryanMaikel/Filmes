@@ -1,6 +1,6 @@
 __author__ = "Adryan Maikel"
 __version__ = "1.0.0"
 
-from . import users
+from . import users, movies
 
-__all__ = ["users"]
+__all__ = ["users", "movies"]
