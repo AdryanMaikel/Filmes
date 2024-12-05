@@ -1,0 +1,9 @@
+form{
+    background-color: aliceblue;
+    
+    label{
+        display: flex;
+        
+    }
+
+}

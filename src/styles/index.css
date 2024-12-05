@@ -6,6 +6,10 @@ section {
     align-content: center;
 }
 
+section img.background {
+    image-rendering: crisp-edges;
+}
+
 form {
     width: 230px;
     margin: 0 auto;

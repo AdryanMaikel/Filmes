@@ -1,0 +1,143 @@
+.shadow {
+    width: 100%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    z-index: 99;
+
+    &::before, &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 30px;
+        pointer-events: none;
+        z-index: 10;
+        background: transparent;
+        transition: left 0.5s ease, right 0.5s ease;
+        opacity: .8;
+    }
+    
+    &::before {
+        left: 0;
+        background: linear-gradient(to right, black, #000000bb, #00000046, transparent);
+    }
+    
+    &::after {
+        right: 0;
+        background: linear-gradient(to left, black, #000000bb, #00000046, transparent);
+    }
+    
+    &:not(.left).right {
+        &::after {right: 0}
+        &::before {left: -5%}
+    }
+
+    &:not(.right).left {
+        &::after {right: -5%}
+        &::before {left: 0}
+    }
+
+    .carousel {
+        width: 100%;
+        padding: 5px;
+        display: flex;
+        white-space: nowrap;
+        overflow-x: scroll;
+        gap: 5px;
+        user-select: none;
+        scrollbar-width: none;
+        scroll-snap-type: x mandatory;
+        cursor: grab;
+        position: relative;
+        z-index: 1;
+    
+        &.active {
+            cursor: grabbing;
+        }
+    
+        .card {
+            flex: 0 0 auto;
+            width: 220px;
+            height: 330px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 5px 5px var(--color-black);
+            border-radius: 9px;
+            transition: box-shadow .5s;
+            /* background-color: #ffffff; */
+            
+            .options, .background {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                user-select: none;
+            }
+        
+            .background {
+                object-fit: cover;
+                pointer-events: none;
+                z-index: -1;
+                border-radius: 10px;
+            }
+        
+            .options {
+                height: 80px;
+                top: 350px;
+                align-items: center;
+                transition: top .5s;
+                background: var(--color-black);;
+                box-shadow: 0px 5px 14px 19px var(--color-black);
+                opacity: 0.92;
+                z-index: 1;
+        
+                &.active { top: 260px }
+    
+                .title {
+                    color: var(--color-white);
+                    line-height: 20px;
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+
+                .buttons {
+                    width: 100%;
+        
+                    span {
+                        color: slategrey;
+                        width: 35px;
+                        font-weight: 800;
+                    }
+
+                    button {
+                        cursor: pointer;
+                        background: transparent;
+                        border: none;
+                        outline: none;
+                        color: var(--color-blue);
+                        font-size: 14px;
+                        padding: 5px 0;
+                        opacity: .6;
+                        transition: opacity .5s;
+        
+                        &.play { width: 50px }
+                        &.download { width: 90px }
+
+                        &:disabled {
+                            opacity: .2;
+                            pointer-events: none;
+                        }
+    
+                        &:hover{ opacity: 1 }
+                    }
+                }
+            }
+        
+            &:hover {
+                .options {
+                    top: 250px;
+                }
+            }
+        }
+    }
+}
