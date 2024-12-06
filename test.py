@@ -22,4 +22,4 @@ print(movies.get(dict))
 
 
 # print(users.add({"username": "Adryan", "password": "123"}))
-# print(users.get())
+print(users.get())

@@ -1,115 +1,84 @@
-body {
-    background: #fefefe;
+:root {
+    --adryan: "Maikel";
 }
 
-h1,h2{display: none}
+header {
+    display: none;
+}
 
 section {
-    width: 100vw;
-    height: 100vh;
-    align-content: center;
+
 }
 
 form {
-    width: 230px;
-    margin: 0 auto;
-    border-radius: 5px;
-    box-shadow: 0 0px 15px -7px;
-}
-
-form fieldset {
-    padding: 5px;
-    position: relative;
-    border: none;
-}
-
-form fieldset figure {
+    --width-form: 220px;
+    width: var(--width-form);
+    padding: 8px;
     position: absolute;
-    width: 120px;
-    height: 120px;
-    z-index: 99;
-    right: -40px;
-    top: -63px;
+    top: 30%;
+    left: calc(50% - var(--width-form) / 2);
+    border-radius: 7px;
+    border: 1px solid var(--c-black-secondy);
 }
 
-form fieldset figure img {
+figure {
+    --size-img: 130px;
+    width: var(--size-img);
+    height: var(--size-img);
+    position: absolute;
+    top: -112px;
+    right: -12px;
+}
+
+figure img {
     width: 100%;
-    user-select: none;
-    -webkit-user-drag: none;
+    height: 100%;
 }
 
-form label {
+
+label {
+    padding: 10px 14px;
     position: relative;
-    padding: 10px 13px;
-    margin-top: 5px;
-    margin-bottom: 5px;
     display: flex;
-    gap: 5px;
+    gap: 10px;
+    margin-bottom: 7px;
 }
 
-form label i {
-    color: black
+label input {
+    height: 20px;
 }
 
-form label input {
-    border: none;
-    outline: none;
-    /* padding-left: 5px; */
-    width: 100px;
-}
-
-form label input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px white inset;
-}
-
-form label input.error ~ .line {
-    background: #f007;
-} 
-
-form label input ~ .line {
+label input ~ .line {
     width: 0;
     height: 1px;
+    transition: width .5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+label input,
+label input:focus ~ .line,
+label input:active ~ .line {
+    --width-input: 150px;
+    width: var(--width-input);
+}
+
+label span {
     position: absolute;
-    top: 22px;
-    left: 28px;
-    opacity: .7;
-    background: black;
-    transition: width .5s cubic-bezier(0.215, 0.610, 0.355, 1);
+    bottom: -8px;
+    left: 12px;
+    
 }
 
-form label input:focus ~ .line {
-    width: 135px;
-}
-
-form .buttons {
+.buttons {
+    padding-top: 8px;
+    padding-bottom: 5px;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 0 10px;
+    justify-content: space-around;
 }
 
-form .buttons button {
-    background: #e9b35aaf;
-    margin: 5px 0;
-    width: 100%;
+.buttons button {
+    padding: 4px 35px;
     border: none;
     outline: none;
     border-radius: 7px;
-    padding: 3px 0;
-    cursor: pointer;
     transition: background .5s cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-
-form .buttons button:hover {
-    background: #e9b35aff;
-}
-
-footer address {
-    width: 100%;
-    height: 25px;
-    position: fixed;
-    bottom: 0;
-    text-align: center;
 }

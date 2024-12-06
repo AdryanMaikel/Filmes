@@ -22,19 +22,29 @@ const inputPassword = form.querySelector("input#password");
 const tentatives = [];
 const buttonSubmit = form.querySelector("button[type='submit']");
 
+const labelUsername = form.querySelector(`label[for="username"]`);
+const spanUsername = labelUsername.querySelector("span");
+const labelPassword = form.querySelector(`label[for="password"]`);
+const spanPassword = labelPassword.querySelector("span");
+
+
 form.onsubmit = async function(event) {
     event.preventDefault();
     const username = inputUsername.value;
     if (!username) {
+        inputUsername.parentElement.classList.add("error");
+        spanUsername.innerText = "Digite seu username.";
         inputUsername.focus();
         return;
     }
     const password = inputPassword.value;
     if (!password) {
+        spanPassword.innerText = "Digite sua senha.";
+        inputPassword.parentElement.classList.add("error");
         inputPassword.focus();
         return;
     }
-    credentials = `${username}${password}`
+    credentials = `${username}${password}`;
     if (tentatives.includes(credentials)) {
         return;
     }
@@ -54,8 +64,8 @@ form.onsubmit = async function(event) {
             window.alert(await response.text());
             break;
         case 401:
-            window.alert("Senha incorreta.");
-            inputPassword.classList.add("error");
+            spanPassword.innerText = "Senha incorreta.";
+            labelPassword.classList.add("error");
             inputPassword.focus();
             break;
         case 404:
@@ -69,4 +79,8 @@ form.onsubmit = async function(event) {
         default:
             break;
     }
+}
+
+form.onreset = function() {
+    [spanUsername, spanPassword].forEach(span=>span.textContent = "");
 }
