@@ -1,0 +1,120 @@
+:root {
+    --adryan: "Maikel";
+}
+
+header {
+    display: none;
+}
+
+section {
+
+}
+
+form {
+    --width-form: 220px;
+    width: var(--width-form);
+    padding: 8px;
+    position: absolute;
+    top: 30%;
+    left: calc(50% - var(--width-form) / 2);
+    border-radius: 7px;
+    border: 1px solid var(--c-black-secondy);
+}
+
+figure {
+    --size-img: 130px;
+    width: var(--size-img);
+    height: var(--size-img);
+    position: absolute;
+    top: -112px;
+    right: -12px;
+}
+
+figure img {
+    width: 100%;
+    height: 100%;
+}
+
+
+label {
+    padding: 10px 14px;
+    position: relative;
+    display: flex;
+    height: 50px;
+    gap: 10px;
+    transition: .4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+label.error {
+    margin-bottom: 8px;
+}
+
+label#new-user {
+    overflow: hidden;
+    height: 0;
+    padding: 0;
+    scale: 0;
+    transform-origin: left;
+}
+
+label#new-user.open.error span {
+    bottom: -5px;
+}
+
+label#new-user.open {
+    padding: 17px 14px;
+    scale: 1;
+    height: 52px;
+    transform-origin: center;
+}
+
+label#new-user h3 {
+    font-size: 15px;
+    position: absolute;
+    top: 0px;
+    left: 35px;
+}
+
+label input {
+    height: 20px;
+}
+
+label div {
+    position: relative;
+}
+
+label input ~ .line {
+    width: 0;
+    height: 1px;
+    position: fixed;
+    transition: width .5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+label input,
+label input:focus ~ .line,
+label input:active ~ .line {
+    --width-input: 150px;
+    width: var(--width-input);
+}
+
+label span {
+    position: absolute;
+    bottom: -8px;
+    left: 12px;
+    
+}
+
+.buttons {
+    padding-top: 8px;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.buttons button {
+    padding: 4px 35px;
+    border: none;
+    outline: none;
+    border-radius: 7px;
+    transition: background .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}

@@ -10,7 +10,8 @@ const inputPassword = form.querySelector("input#password");
         let json = JSON.parse(credentials);
         const response = await request({ route, method, json });
         if (response.status === 200) {
-            window.location = await response.text();
+            const route = await response.text();
+            setInterval(()=>window.location = route, 1000)
         } else {
             localStorage.removeItem("credentials");
         }
@@ -27,22 +28,40 @@ const spanUsername = labelUsername.querySelector("span");
 const labelPassword = form.querySelector(`label[for="password"]`);
 const spanPassword = labelPassword.querySelector("span");
 
+const labelNewUser = form.querySelector(`label[for="email"]`);
+const inputMail = labelNewUser.querySelector("input");
+const spanNewUser = labelNewUser.querySelector("span");
 
 form.onsubmit = async function(event) {
     event.preventDefault();
     const username = inputUsername.value;
     if (!username) {
-        inputUsername.parentElement.classList.add("error");
+        labelUsername.classList.add("error");
         spanUsername.innerText = "Digite seu username.";
         inputUsername.focus();
         return;
     }
+    if (labelUsername.classList.contains("error")) {
+        spanUsername.innerText = "";
+        labelUsername.classList.remove("error");
+    }
     const password = inputPassword.value;
     if (!password) {
         spanPassword.innerText = "Digite sua senha.";
-        inputPassword.parentElement.classList.add("error");
+        labelPassword.classList.add("error");
         inputPassword.focus();
         return;
+    }
+    if (labelPassword.classList.contains("error")) {
+        spanPassword.innerText = "";
+        labelPassword.classList.remove("error");
+    }
+    const mail = inputMail.value;
+    if (labelNewUser.classList.contains("open") && !mail) {
+        labelNewUser.classList.add("error");
+        spanNewUser.innerText = "Informe seu email.";
+        inputMail.focus();
+        return
     }
     credentials = `${username}${password}`;
     if (tentatives.includes(credentials)) {
@@ -55,13 +74,14 @@ form.onsubmit = async function(event) {
     let json = { username, password };
     console.log(tentatives);
     const response = await request({ route, method, json });
+    const responseText = await response.text();
     switch (response.status) {
         case 200:
             localStorage.setItem("credentials", JSON.stringify(json));
-            window.location = await response.text();
+            window.location = responseText;
             break;
         case 400:
-            window.alert(await response.text());
+            window.alert(responseText);
             break;
         case 401:
             spanPassword.innerText = "Senha incorreta.";
@@ -69,7 +89,8 @@ form.onsubmit = async function(event) {
             inputPassword.focus();
             break;
         case 404:
-            
+            labelNewUser.classList.add("open");
+            inputMail.focus()
             break;
         case 429:
             buttonSubmit.disabled = true;
@@ -83,4 +104,7 @@ form.onsubmit = async function(event) {
 
 form.onreset = function() {
     [spanUsername, spanPassword].forEach(span=>span.textContent = "");
+    [labelUsername, labelPassword].forEach(label=>label.classList.remove("error"));
+    labelNewUser.classList.remove("open", "error");
+    spanNewUser.innerText = "";
 }

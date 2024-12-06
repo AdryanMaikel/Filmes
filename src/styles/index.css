@@ -1,5 +1,5 @@
 :root {
-    --adryan: "Maikel";
+
 }
 
 header {
@@ -13,13 +13,16 @@ section {
 form {
     --width-form: 220px;
     width: var(--width-form);
-    padding: 8px;
     position: absolute;
     top: 30%;
     left: calc(50% - var(--width-form) / 2);
     border-radius: 7px;
     border: 1px solid var(--c-black-secondy);
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
 }
+
 
 figure {
     --size-img: 130px;
@@ -36,43 +39,56 @@ figure img {
 }
 
 
-label {
-    padding: 10px 14px;
+form label {
     position: relative;
-    display: flex;
-    gap: 10px;
-    margin-bottom: 7px;
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-bottom: 10px;
 }
 
-label input {
-    height: 20px;
+form label i {
+    font-size: 16px;
 }
 
-label input ~ .line {
+form label input {
+    width: 175px;
+}
+
+form label input:focus ~ .line, 
+form label input:active ~ .line {
+    width: 195px;
+} 
+
+form label input ~ .line {
     width: 0;
     height: 1px;
-    transition: width .5s cubic-bezier(0.77, 0, 0.175, 1);
-}
-
-label input,
-label input:focus ~ .line,
-label input:active ~ .line {
-    --width-input: 150px;
-    width: var(--width-input);
-}
-
-label span {
     position: absolute;
-    bottom: -8px;
-    left: 12px;
+    bottom: 7px;
+    transition: .5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+form label span {
+    position: absolute;
+    width: 100%;
+    float: left;
+    left: 21px;
+    top: 31px;
+    font-size: 13px;
+    color: red;
     
 }
 
+form label#new-user p {
+    position: absolute;
+    font-size: 13px;
+}
+
 .buttons {
-    padding-top: 8px;
-    padding-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    /* gap: 10px; */
 }
 
 .buttons button {
