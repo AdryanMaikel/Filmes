@@ -15,7 +15,7 @@
     <header>
         <h1>Login</h1>
     </header>
-    <section>
+    <section id="section-login">
         <h2>Login</h2>
         <form id="form-login" autocomplete="off">
             <figure>
@@ -33,10 +33,6 @@
                 <div class="line"></div>
                 <span></span>
             </label>
-            <label for="new-user">
-                <input type="checkbox" name="new-user" id="new-user" hidden>
-                Criar novo usuário?
-            </label>
             <label for="email">
                 <i class="fa-solid fa-envelope"></i>
                 <input type="email" name="email" id="email">
@@ -46,8 +42,13 @@
             <div class="buttons">
                 <button type="submit"><i class="fa-solid fa-check"></i></button>
                 <button type="reset"><i class="fa-solid fa-cancel"></i></button>
+                <button type="button"><i class="fa-solid fa-user-plus"></i></button>
             </div>
         </form>
+    </section>
+    <section id="section-page">
+        <h2 style="display: none;">Iframe</h2>
+        <iframe frameborder="0"></iframe>
     </section>
     <footer>
         <address>&copy; AdryanMaikel7</address>

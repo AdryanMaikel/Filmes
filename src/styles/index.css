@@ -1,5 +1,5 @@
 :root {
-
+    --height-footer: 20px;
 }
 
 header {
@@ -7,7 +7,29 @@ header {
 }
 
 section {
+    width: 100%;
+    height: calc(100% - var(--height-footer));
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: left .5s;
+}
 
+section.close {
+    left: -100%;
+}
+
+#section-page {
+    z-index: 90;
+}
+
+#section-login {
+    z-index: 99;
+}
+
+section iframe {
+    width: 100%;
+    height: 100%;
 }
 
 form {
@@ -44,6 +66,24 @@ form label {
     padding-top: 10px;
     padding-left: 5px;
     padding-bottom: 10px;
+    height: 40px;
+}
+
+form label[for="email"] {
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 0;
+    overflow: hidden;
+    transition: .5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transform-origin: left;
+}
+
+form label[for="email"].open {
+    overflow: visible;
+    height: 40px;
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-bottom: 10px;
 }
 
 form label i {
@@ -72,7 +112,7 @@ form label span {
     width: 100%;
     float: left;
     left: 21px;
-    top: 31px;
+    top: 33PX;
     font-size: 13px;
     color: red;
     
@@ -92,9 +132,14 @@ form label#new-user p {
 }
 
 .buttons button {
-    padding: 4px 35px;
+    padding: 4px 20px;
     border: none;
     outline: none;
     border-radius: 7px;
     transition: background .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+footer {
+    height: var(--height-footer);
+
 }

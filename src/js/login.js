@@ -2,16 +2,51 @@ const form = document.getElementById("form-login");
 const inputUsername = form.querySelector("input#username");
 const inputPassword = form.querySelector("input#password");
 
+
+function escreverNoInput(input, texto) {
+    return new Promise((resolve) => {
+        let i = 0;
+        const intervalId = setInterval(() => {
+            if (i < texto.length) {
+                input.value += texto.charAt(i);
+                i++;
+            } else {
+                clearInterval(intervalId); // Para a digitação quando o texto for todo inserido
+                resolve(); // Resolve a Promise quando a digitação terminar
+            }
+        }, 100);
+    });
+}
+
+const sectionLogin = document.getElementById("section-login");
+const sectionPage = document.getElementById("section-page");
+const iframe = document.querySelector("iframe");
+
+function disabledSection() {
+    sectionLogin.classList.add("close");
+    sectionLogin.querySelectorAll("input").forEach(input=>input.disabled = true);
+    sectionLogin.querySelectorAll("button").forEach(button=>button.disabled = true);
+}
+
 (async function() {
     const credentials = localStorage.getItem("credentials");
     if (credentials) {
+        let json = JSON.parse(credentials);
+        await escreverNoInput(inputUsername, json.username);
+        await escreverNoInput(inputPassword, json.password);
         let route = "/login";
         let method = "POST";
-        let json = JSON.parse(credentials);
         const response = await request({ route, method, json });
         if (response.status === 200) {
             const route = await response.text();
-            setInterval(()=>window.location = route, 1000)
+            iframe.src = route;
+            window.onmessage = event => {
+                if (event.data === "iframeConcluiu") {
+                    disabledSection();
+                }
+            }
+            // setInterval(()=>window.location = route, 1000);
+            return;
         } else {
             localStorage.removeItem("credentials");
         }
@@ -107,4 +142,11 @@ form.onreset = function() {
     [labelUsername, labelPassword].forEach(label=>label.classList.remove("error"));
     labelNewUser.classList.remove("open", "error");
     spanNewUser.innerText = "";
+}
+
+const buttonNewUser = document.querySelector(`button[type="button"]`);
+buttonNewUser.onclick = function(event) {
+    labelNewUser.classList.add("open");
+    inputMail.focus();
+    return;
 }
