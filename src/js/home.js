@@ -2,8 +2,9 @@ const section = document.querySelector("section");
 
 function createCard(movie) {
     return `
-<div class="card">
+<div class="card" id="card-${movie.id}">
     <img src="${movie.image}" class="background">
+    <button class="play"><i class="fa-solid fa-play"></i></button>
 </div>`;
 }
 

@@ -20,12 +20,12 @@
     
     &::before {
         left: 0;
-        background: linear-gradient(to right, black, #000000bb, #00000046, transparent);
+        background: linear-gradient(to right, var(--c-white-primary), var(--c-white-primary-bb), var(--c-white-primary-46), transparent);
     }
     
     &::after {
         right: 0;
-        background: linear-gradient(to left, black, #000000bb, #00000046, transparent);
+        background: linear-gradient(to left, var(--c-white-primary), var(--c-white-primary-bb), var(--c-white-primary-46), transparent);
     }
     
     &:not(.left).right {
@@ -58,85 +58,47 @@
     
         .card {
             flex: 0 0 auto;
-            width: 220px;
-            height: 330px;
+            width: 190px;
+            height: 280px;
             position: relative;
             overflow: hidden;
-            box-shadow: inset 0 0 5px 5px var(--color-black);
+            box-shadow: inset 0 0 5px 5px var(--c-white-primary);
             border-radius: 9px;
             transition: box-shadow .5s;
             /* background-color: #ffffff; */
-            
-            .options, .background {
+            img, button  {
                 width: 100%;
                 height: 100%;
                 position: absolute;
-                user-select: none;
             }
-        
-            .background {
+            img {
+                user-select: none;
                 object-fit: cover;
                 pointer-events: none;
                 z-index: -1;
                 border-radius: 10px;
             }
-        
-            .options {
-                height: 80px;
-                top: 350px;
-                align-items: center;
-                transition: top .5s;
-                background: var(--color-black);;
-                box-shadow: 0px 5px 14px 19px var(--color-black);
-                opacity: 0.92;
-                z-index: 1;
-        
-                &.active { top: 260px }
-    
-                .title {
-                    color: var(--color-white);
-                    line-height: 20px;
-                    font-size: 20px;
-                    font-weight: bold;
-                }
+            button {
+                background: transparent;
+                border: none;
+                outline: none;
+                opacity: .5;
+                transition: opacity .5s;
 
-                .buttons {
-                    width: 100%;
-        
-                    span {
-                        color: slategrey;
-                        width: 35px;
-                        font-weight: 800;
-                    }
-
-                    button {
-                        cursor: pointer;
-                        background: transparent;
-                        border: none;
-                        outline: none;
-                        color: var(--color-blue);
-                        font-size: 14px;
-                        padding: 5px 0;
-                        opacity: .6;
-                        transition: opacity .5s;
-        
-                        &.play { width: 50px }
-                        &.download { width: 90px }
-
-                        &:disabled {
-                            opacity: .2;
-                            pointer-events: none;
-                        }
-    
-                        &:hover{ opacity: 1 }
-                    }
-                }
             }
-        
+            button i.play {
+                color: var(--c-black-primary);
+            }
+            
             &:hover {
-                .options {
-                    top: 250px;
+                img {
+
                 }
+                button {
+                    background: var(--c-white-primary);
+                }
+
+                
             }
         }
     }
